@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import media from "./api/media";
 import { useMemo, useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
+import Link from 'next/link';
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -13,7 +14,7 @@ export default function Home() {
     variables: {
       page: page,
     },
-    fetchPolicy: 'network-only'
+    fetchPolicy: 'cache-first'
   });
 
   useEffect(() => {
@@ -56,9 +57,13 @@ export default function Home() {
                 >
                   {posts?.map((data) => (
                     <div key={data?.id}>
-                      <div>
+                      <Link
+                        href="/anime/[anime]"
+                        as={`anime/${data?.id}`}
+                        key={data?.id}
+                      >
                         <strong> {data?.id}</strong> {data.title?.userPreferred}
-                      </div>
+                      </Link>
                     </div>
                   ))}
                 </InfiniteScroll>
