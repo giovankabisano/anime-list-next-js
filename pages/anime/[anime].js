@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Navbar from '@/components/Navbar';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import animeDetail from './api/animeDetail';
+import animeDetail from '../api/animeDetail';
 import { useQuery } from '@apollo/client';
 import { useMemo } from 'react';
 
